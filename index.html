@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fiches d'escales</title>
+    <title>✈️ Fiches d'escales</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,31 +16,49 @@
         header {
             background-color: #1e3d59;
             color: white;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
-            border-radius: 8px;
+            border-radius: 12px;
             margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
+        header h1 { margin: 0; font-size: 2em; }
+        header p { margin: 5px 0 0 0; opacity: 0.9; }
+        
         .container {
             max-width: 1000px;
             margin: 0 auto;
             position: relative;
         }
-        
-        /* Styles de la Page d'Accueil / Sommaire */
+
+        /* Barre de recherche & Sommaire */
+        .search-box {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1.1em;
+            border: 2px solid #d2e6ee;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .search-box:focus {
+            border-color: #1e3d59;
+        }
         .accueil-box {
             background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 25px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border-top: 5px solid #1e3d59;
         }
         .accueil-box h2 {
             margin-top: 0;
             margin-bottom: 20px;
-            font-size: 1.4em;
-            text-align: center;
+            font-size: 1.3em;
+            color: #1e3d59;
         }
         .liens-terrain {
             display: grid;
@@ -54,7 +72,7 @@
             text-decoration: none;
             padding: 12px;
             text-align: center;
-            border-radius: 6px;
+            border-radius: 8px;
             font-weight: 600;
             transition: all 0.2s ease;
             border: 1px solid #d2e6ee;
@@ -63,63 +81,96 @@
             background-color: #1e3d59;
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        /* Styles des fiches */
+        /* Fiches d'escales */
         .escale-card {
             background: white;
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 25px;
             margin-bottom: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border-left: 5px solid #ff6e40;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 6px solid #ff6e40;
             scroll-margin-top: 20px;
+            transition: all 0.2s;
         }
         .escale-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid #f4f7f6;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
             margin-bottom: 15px;
         }
         .oaci {
             background-color: #1e3d59;
             color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
+            padding: 6px 12px;
+            border-radius: 6px;
             font-weight: bold;
+            font-size: 1.1em;
+            letter-spacing: 0.5px;
         }
-        h2 { margin: 0; color: #1e3d59; }
-        h3 { color: #ff6e40; margin-top: 15px; margin-bottom: 5px; }
+        .meta-info {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+            background: #f8fafb;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #eef2f4;
+            align-items: center;
+        }
+        .actions-btn {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+        h2 { margin: 0; color: #1e3d59; font-size: 1.6em; }
+        h3 { color: #ff6e40; margin-top: 18px; margin-bottom: 6px; font-size: 1.1em; display: flex; align-items: center; gap: 8px; }
         ul { margin: 0; padding-left: 20px; }
+        li { margin-bottom: 4px; }
+        
+        /* Badges & Boutons */
+        .badge-100ll {
+            background-color: #0056b3;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+            display: inline-block;
+        }
+        .btn-vac, .btn-musee {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: white;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .btn-vac { background-color: #ff6e40; }
+        .btn-vac:hover { background-color: #e55b2b; }
+        
+        .btn-musee { background-color: #117a8b; }
+        .btn-musee:hover { background-color: #0f6674; }
+        
         .briefing {
             background-color: #fff9e6;
-            border-left: 3px solid #ffcc00;
-            padding: 10px 15px;
-            margin-top: 15px;
-            border-radius: 4px;
-        }
-        .lnk-retour {
-            display: inline-block;
-            margin-top: 15px;
-            color: #ff6e40;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.95em;
-        }
-        .lnk-retour:hover {
-            text-decoration: underline;
-        }
-        .footer-card {
-            font-size: 0.85em;
-            color: #777;
-            margin-top: 10px;
-            text-align: right;
+            border-left: 4px solid #ffcc00;
+            padding: 12px 18px;
+            margin-top: 20px;
+            border-radius: 6px;
         }
 
-        /* Bouton Retour en haut flottant */
+        /* Bouton Retour en haut */
         .btn-retour-haut {
             position: fixed;
             bottom: 25px;
@@ -127,33 +178,24 @@
             background-color: #ff6e40;
             color: white;
             text-decoration: none;
-            padding: 10px 16px;
+            padding: 10px 18px;
             border-radius: 30px;
             font-weight: bold;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             transition: all 0.2s ease;
             z-index: 1000;
             font-size: 0.9em;
-            display: flex;
-            align-items: center;
-            gap: 5px;
         }
         .btn-retour-haut:hover {
             background-color: #1e3d59;
             transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
         }
-        
-        /* Défilement fluide */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body>
 
 <div class="container" id="accueil">
-
     <header>
         <h1>✈️ Fiches d'escales</h1>
         <p>Informations utiles escales autour de Vannes-Meucon</p>
@@ -161,365 +203,354 @@
 
     <div class="accueil-box">
         <h2>📍 Sélectionner un aérodrome</h2>
-        <div class="liens-terrain">
-            <a href="#lfjr" class="btn-raccourci">Angers (LFJR)</a>
-            <a href="#lfbg" class="btn-raccourci">Angoulême (LFBG)</a>
-            <a href="#lfrb" class="btn-raccourci">Brest (LFRB)</a>
-            <a href="#lfou" class="btn-raccourci">Cholet (LFOU)</a>
-            <a href="#lfrd" class="btn-raccourci">Dinard (LFRD)</a>
-            <a href="#lfrf" class="btn-raccourci">Granville (LFRF)</a>
-            <a href="#lfst" class="btn-raccourci">La Roche-sur-Yon (LFST)</a>
-            <a href="#lfci" class="btn-raccourci">Lannion (LFCI)</a>
-            <a href="#lfru" class="btn-raccourci">Morlaix (LFRU)</a>
-            <a href="#lfrs" class="btn-raccourci">Nantes (LFRS)</a>
-            <a href="#lfrq" class="btn-raccourci">Quimper (LFRQ)</a>
-            <a href="#lfrt" class="btn-raccourci">Saint-Brieuc (LFRT)</a>
-        </div>
+        <input type="text" id="recherche" class="search-box" placeholder="🔍 Rechercher une ville, un code OACI (ex: LFRF)...">
+        <div class="liens-terrain" id="sommaire-fiches"></div>
     </div>
 
-    <!-- GRANVILLE -->
-    <div class="escale-card" id="lfrf">
-        <div class="escale-header">
-            <h2>Granville - Mont-Saint-Michel</h2>
-            <span class="oaci">LFRF</span>
-        </div>
-        <h3>🛫 Caractéristiques Piste(s)</h3>
-        <ul>
-            <li><strong>QFU :</strong> 07 / 25</li>
-            <li><strong>Longueur & Revêtement :</strong> 960 m x 30 m (Bitume)</li>
-            <li><strong>QFU préférentiel :</strong> 25 (Face à la mer, sauf vent arrière fort)</li>
-        </ul>
-        <h3>💳 Taxes & Services</h3>
-        <ul>
-            <li><strong>Taxe d'atterrissage :</strong> 12 € (Automate CB).</li>
-            <li><strong>Carburant :</strong> 100LL / UL91 (Automate TOTAL).</li>
-        </ul>
-        <h3>🍽️ Restauration</h3>
-        <ul>
-            <li><strong>Sur place :</strong> Restaurant "Les Valseuses sur Mer" au pied de la tour. Ouvert tous les jours. Réservation : 0665398102.</li>
-            <li><strong>Accès :</strong> Après avoir payé les taxes, sortir par la grille pour rejoindre le restaurant (le code de la grille est la fréquence de l'AD).</li>
-        </ul>
-        <div class="briefing">
-            <strong>🎯 Le Briefing des Copains :</strong> Effet de falaise en finale 25 par vent de Nord-Ouest. Respecter le TdP maritime.
-        </div>
-        <a href="#accueil" class="lnk-retour">↩️ Retour au sommaire</a>
-        <div class="footer-card"> Dernière mise à jour : Mai 2026 </div>
-    </div>
+    <div id="liste-fiches"></div>
+</div>
 
-    <!-- CHOLET -->
-    <div class="escale-card" id="lfou">
-        <div class="escale-header">
-            <h2>Cholet - Le Pontreau</h2>
-            <span class="oaci">LFOU</span>
-        </div>
-        <h3>🛫 Caractéristiques Piste(s)</h3>
-        <ul>
-            <li><strong>QFU :</strong> 03 / 21</li>
-            <li><strong>Longueur & Revêtement :</strong> 1380 m x 30 m (Bitume)</li>
-            <li><strong>QFU préférentiel :</strong> Selon vent (Attention à l'activité planeurs/voltige fréquente)</li>
-        </ul>
-        <h3>💳 Taxes & Services</h3>
-        <ul>
-            <li><strong>Procédure Avitaillement & Taxes :</strong> Monter à la tour pour récupérer le badge de la pompe. À la restitution du badge, paiement global par carte bancaire de la taxe d'atterrissage et de l'avitaillement.</li>
-            <li><strong>Carburant :</strong> 100LL / UL91.</li>
-        </ul>
-        <h3>🍽️ Restauration</h3>
-        <ul>
-            <li><strong>Sur place :</strong> Restaurant "Côté Piste" situé sur l'aérodrome. Réservation : 02 41 75 03 03.</li>
-            <li><strong>Parking avion :</strong> Situé juste devant le restaurant.</li>
-        </ul>
-        <div class="briefing">
-            <strong>🎯 Le Briefing des Copains :</strong> Circuit spécifique pour éviter le survol des zones habitées. Intégration soignée recommandée à cause de l'activité planeurs et parachutisme importante le week-end.
-        </div>
-        <a href="#accueil" class="lnk-retour">↩️ Retour au sommaire</a>
-        <div class="footer-card"> Dernière mise à jour : Mai 2026 </div>
-    </div>
-
-    <!-- NANTES -->
-    <div class="escale-card" id="lfrs">
-        <div class="escale-header">
-            <h2>Nantes Atlantique</h2>
-            <span class="oaci">LFRS</span>
-        </div>
-        <h3>🛫 Caractéristiques Piste(s)</h3>
-        <ul>
-            <li><strong>QFU :</strong> 03 / 21</li>
-            <li><strong>Longueur & Revêtement :</strong> 2900 m x 45 m (Bitume)</li>
-            <li><strong>QFU préférentiel :</strong> Soumise aux instructions ATC (Terrain contrôlé CTR/TMA Classe D).</li>
-        </ul>
-        <h3>💳 Taxes & Services</h3>
-        <ul>
-            <li><strong>Taxe d'atterrissage :</strong> Obligatoire (Facturation ultérieure via CCI / Swoport ou à l'escale).</li>
-            <li><strong>Carburant :</strong> 100LL / JET A-1 (Automate TOTAL / World Fuel).</li>
-        </ul>
-        <h3>🍽️ Restauration</h3>
-        <ul>
-            <li><strong>Sur place :</strong> Boutiques, snacks et brasseries dans l'aérogare passagers commerciale.</li>
-        </ul>
-        <div class="briefing">
-            <strong>🎯 Le Briefing des Copains :</strong> Plan de plan ou contact radio très en amont requis. Attention aux turbulences de sillage (gros porteurs réguliers). Respectez scrupuleusement les clairances de roulage au sol.
-        </div>
-        <a href="#accueil" class="lnk-retour">↩️ Retour au sommaire</a>
-        <div class="footer-card"> Dernière mise à jour : Mai 2026 </div>
-    </div>
-
-    <!-- SAINT-BRIEUC -->
-    <div class="escale-card" id="lfrt">
-        <div class="escale-header">
-            <h2>Saint-Brieuc - Armor</h2>
-            <span class="oaci">LFRT</span>
-        </div>
-        <h3>🛫 Caractéristiques Piste(s)</h3>
-        <ul>
-            <li><strong>QFU :</strong> 06 / 24</li>
-            <li><strong>Longueur & Revêtement :</strong> 2200 m x 45 m (Bitume)</li>
-            <li><strong>QFU préférentiel :</strong> Selon consignes AFIS ou vent en vigueur.</li>
-        </ul>
-        <h3>💳 Taxes & Services</h3>
-        <ul>
-            <li><strong>Taxe d'atterrissage :</strong> Oui (Règlement au comptoir SSLIA / AFIS).</li>
-            <li><strong>Carburant :</strong> 100LL / JET A-1.</li>
-        </ul>
-        <h3>🍽️ Restauration</h3>
-        <ul>
-            <li><strong>Sur place :</strong> Restaurant de l'aérodrome avec vue sur le tarmac (vérifier les jours d'ouverture).</li>
-        </ul>
-        <div class="briefing">
-            <strong>🎯 Le Briefing des Copains :</strong> Attention à la gestion de l'espace aérien à proximité et respectez les trajectoires de circuit publiées pour éviter les nuisances.
-        </div>
-        <a href="#accueil" class="lnk-retour">↩️ Retour au sommaire</a>
-        <div class="footer-card"> Dernière mise à jour : Mai 2026 </div>
-    </div>
-
-    <!-- DINARD -->
-    <div class="escale-card" id="lfrd">
-        <div class="escale-header">
-            <h2>Dinard - Pleurtuit - Saint-Malo</h2>
-            <span class="oaci">LFRD</span>
-        </div>
-        <h3>🛫 Caractéristiques Piste(s)</h3>
-        <ul>
-            <li><strong>QFU :</strong> 17 / 35 & 12 / 30</li>
-            <li><strong>Longueur & Revêtement :</strong> 2200 m x 45 m (Bitume) & 1445 m x 45 m (Bitume)</li>
-            <li><strong>QFU préférentiel :</strong> Gérée par l'ATC / AFIS selon conditions météo.</li>
-        </ul>
-        <h3>💳 Taxes & Services</h3>
-        <ul>
-            <li><strong>Taxe d'atterrissage :</strong> Oui (Facturation via l'exploitant de l'aéroport).</li>
-            <li><strong>Carburant :</strong> 100LL / JET A-1 (Automate ou camion).</li>
-        </ul>
-        <h3>🍽️ Restauration</h3>
-        <ul>
-            <li><strong>Sur place :</strong> Snacks ou distributeurs dans l'aérogare principale.</li>
-        </ul>
-        <div class="briefing">
-            <strong>🎯 Le Briefing des Copains :</strong> Activité de maintenance aéronautique importante sur site (gros avions au sol/en tour de piste). Attention aux cheminements VFR côtiers très fréquentés en été.
-        </div>
-        <a href="#accueil" class="lnk-retour">↩️ Retour au sommaire</a>
-        <div class="footer-card"> Dernière mise à jour : Mai 2026 </div>
-    </div>
-
-    <!-- BREST -->
-    <div class="escale-card" id="lfrb">
-        <div class="escale-header">
-            <h2>Brest Bretagne</h2>
-            <span class="oaci">LFRB</span>
-        </div>
-        <h3>🛫 Caractéristiques Piste(s)</h3>
-        <ul>
-            <li><strong>QFU :</strong> 07L / 25R & 07R / 25L</li>
-            <li><strong>Longueur & Revêtement :</strong> 3100 m x 45 m (Bitume) & 700 m x 18 m (Bitume)</li>
-            <li><strong>QFU préférentiel :</strong> Attribuée par le contrôle (Terrain CTR Classe D). Piste courte dédiée à l'aviation légère si disponible.</li>
-        </ul>
-        <h3>💳 Taxes & Services</h3>
-        <ul>
-            <li><strong>Taxe d'atterrissage :</strong> Oui (Règlement Swoport ou guichet).</li>
-            <li><strong>Carburant :</strong> 100LL / JET A-1.</li>
-        </ul>
-        <h3>🍽️ Restauration</h3>
-        <ul>
-            <li><strong>Sur place :</strong> Nombreuses options de restauration (brasseries, enseignes) dans l'aérogare commerciale.</li>
-        </ul>
-        <div class="briefing">
-            <strong>🎯 Le Briefing des Copains :</strong> Présence fréquente de brouillard maritime soudain (entrées maritimes). Soyez vigilants aux turbulences et au trafic commercial IFR intense.
-        </div>
-        <a href="#accueil" class="lnk-retour">↩️ Retour au sommaire</a>
-        <div class="footer-card"> Dernière mise à jour : Mai 2026 </div>
-    </div>
-
-    <!-- QUIMPER -->
-    <div class="escale-card" id="lfrq">
-        <div class="escale-header">
-            <h2>Quimper - Bretagne</h2>
-            <span class="oaci">LFRQ</span>
-        </div>
-        <h3>🛫 Caractéristiques Piste(s)</h3>
-        <ul>
-            <li><strong>QFU :</strong> 09 / 27</li>
-            <li><strong>Longueur & Revêtement :</strong> 2140 m x 45 m (Bitume)</li>
-            <li><strong>QFU préférentiel :</strong> Soumise aux clairances de la tour / Contrôle selon activité.</li>
-        </ul>
-        <h3>💳 Taxes & Services</h3>
-        <ul>
-            <li><strong>Taxe d'atterrissage :</strong> Oui (Règlement à l'aérogare).</li>
-            <li><strong>Carburant :</strong> 100LL / JET A-1.</li>
-        </ul>
-        <h3>🍽️ Restauration</h3>
-        <ul>
-            <li><strong>Sur place :</strong> Distributeurs de boissons et snacks dans l'aérogare passagers.</li>
-        </ul>
-        <div class="briefing">
-            <strong>🎯 Le Briefing des Copains :</strong> Attention au relief environnant bas mais vallonné en approche par faible visibilité. Respectez bien les axes de transit VFR.
-        </div>
-        <a href="#accueil" class="lnk-retour">↩️ Retour au sommaire</a>
-        <div class="footer-card"> Dernière mise à jour : Mai 2026 </div>
-    </div>
-
-    <!-- MORLAIX -->
-    <div class="escale-card" id="lfru">
-        <div class="escale-header">
-            <h2>Morlaix - Ploujean</h2>
-            <span class="oaci">LFRU</span>
-        </div>
-        <h3>🛫 Caractéristiques Piste(s)</h3>
-        <ul>
-            <li><strong>QFU :</strong> 04 / 22</li>
-            <li><strong>Longueur & Revêtement :</strong> 1614 m x 36 m (Bitume)</li>
-            <li><strong>QFU préférentiel :</strong> Selon vent et consignes de l'agent AFIS.</li>
-        </ul>
-        <h3>💳 Taxes & Services</h3>
-        <ul>
-            <li><strong>Taxe d'atterrissage :</strong> Oui (Règlement au bureau AFIS / Bureau d'aérodrome).</li>
-            <li><strong>Services :</strong> Avitaillement possible sur place.</li>
-        </ul>
-        <h3>🍽️ Restauration</h3>
-        <ul>
-            <li><strong>Sur place :</strong> Bar Snack "l'Escale" situé directement sur l'aérodrome. Cuisine simple, abordable, de qualité et accueil très sympa. Tél : 02 98 62 16 09.</li>
-            <li><strong>À proximité (Amateurs de viandes) :</strong> Restaurant "La Boucherie" accessible en sortant de l'aérodrome à 300 mètres (Tél : 02 98 88 08 78).</li>
-        </ul>
-        <div class="briefing">
-            <strong>🎯 Le Briefing des Copains :</strong> Attention à la proximité de la baie de Morlaix qui peut engendrer des brises côtières marquées et des changements de visibilité rapides. Activité para possible.
-        </div>
-        <a href="#accueil" class="lnk-retour">↩️ Retour au sommaire</a>
-        <div class="footer-card"> Dernière mise à jour : Mai 2026 </div>
-    </div>
-
-    <!-- LANNION -->
-    <div class="escale-card" id="lfci">
-        <div class="escale-header">
-            <h2>Lannion - Côte de Granit Rose</h2>
-            <span class="oaci">LFCI</span>
-        </div>
-        <h3>🛫 Caractéristiques Piste(s)</h3>
-        <ul>
-            <li><strong>QFU :</strong> 11 / 29</li>
-            <li><strong>Longueur & Revêtement :</strong> 1610 m x 30 m (Bitume)</li>
-            <li><strong>QFU préférentiel :</strong> Gérée selon le vent et les informations de la station AFIS.</li>
-        </ul>
-        <h3>💳 Taxes & Services</h3>
-        <ul>
-            <li><strong>Taxe d'atterrissage :</strong> Oui (Règlement sur place).</li>
-            <li><strong>Carburant :</strong> 100LL / JET A-1.</li>
-        </ul>
-        <h3>🍽️ Restauration</h3>
-        <ul>
-            <li><strong>Sur place :</strong> Bar-restaurant de l'aéroport (vérifier les horaires d'ouverture de saison).</li>
-        </ul>
-        <div class="briefing">
-            <strong>🎯 Le Briefing des Copains :</strong> Circuit de piste très encadré pour éviter le survol des habitations périphériques. Intégration rigoureuse requise.
-        </div>
-        <a href="#accueil" class="lnk-retour">↩️ Retour au sommaire</a>
-        <div class="footer-card"> Dernière mise à jour : Mai 2026 </div>
-    </div>
-
-    <!-- ANGERS -->
-    <div class="escale-card" id="lfjr">
-        <div class="escale-header">
-            <h2>Angers - Loire Marcé</h2>
-            <span class="oaci">LFJR</span>
-        </div>
-        <h3>🛫 Caractéristiques Piste(s)</h3>
-        <ul>
-            <li><strong>QFU :</strong> 08 / 26</li>
-            <li><strong>Longueur & Revêtement :</strong> 1800 m x 30 m (Bitume)</li>
-            <li><strong>QFU préférentiel :</strong> 26 généralement par vent d'Ouest dominant.</li>
-        </ul>
-        <h3>💳 Taxes & Services</h3>
-        <ul>
-            <li><strong>Taxe d'atterrissage :</strong> Oui (Règlement via l'automate de gestion ou bureau d'aérodrome).</li>
-            <li><strong>Carburant :</strong> 100LL / JET A-1 (Automate CB).</li>
-        </ul>
-        <h3>🍽️ Restauration</h3>
-        <ul>
-            <li><strong>Sur place :</strong> Restaurant "L'envol" situé sur l'aérodrome. Réservation : 02 72 47 19 38. Accès direct au superbe Musée "Espace Air Passion".</li>
-        </ul>
-        <div class="briefing">
-            <strong>🎯 Le Briefing des Copains :</strong> Ne manquez pas la visite du musée aéronautique sur place, elle vaut vraiment le détour ! Activité de formation VFR intense sur l'axe.
-        </div>
-        <a href="#accueil" class="lnk-retour">↩️ Retour au sommaire</a>
-        <div class="footer-card"> Dernière mise à jour : Mai 2026 </div>
-    </div>
-
-    <!-- ANGOULEME -->
-    <div class="escale-card" id="lfbg">
-        <div class="escale-header">
-            <h2>Angoulême - Cognac (Brie-Champniers)</h2>
-            <span class="oaci">LFBG</span>
-        </div>
-        <h3>🛫 Caractéristiques Piste(s)</h3>
-        <ul>
-            <li><strong>QFU :</strong> 10 / 28</li>
-            <li><strong>Longueur & Revêtement :</strong> 1860 m x 45 m (Bitume)</li>
-            <li><strong>QFU préférentiel :</strong> Selon vent, écouter l'AFIS ou les informations en auto-information.</li>
-        </ul>
-        <h3>💳 Taxes & Services</h3>
-        <ul>
-            <li><strong>Taxe d'atterrissage :</strong> Oui (À régler au guichet SSLIA).</li>
-            <li><strong>Carburant :</strong> 100LL / JET A-1.</li>
-        </ul>
-        <h3>🍽️ Restauration</h3>
-        <ul>
-            <li><strong>Sur place :</strong> Brasserie de l'aéroport ouverte en semaine (très bon rapport qualité-prix).</li>
-        </ul>
-        <div class="briefing">
-            <strong>🎯 Le Briefing des Copains :</strong> Attention aux zones militaires restreintes de Cognac à proximité immédiate. Bien préparer sa navigation et ses contacts radio.
-        </div>
-        <a href="#accueil" class="lnk-retour">↩️ Retour au sommaire</a>
-        <div class="footer-card"> Dernière mise à jour : Mai 2026 </div>
-    </div>
-
-    <!-- LA ROCHE-SUR-YON -->
-    <div class="escale-card" id="lfst">
-        <div class="escale-header">
-            <h2>La Roche-sur-Yon - Les Ajoncs</h2>
-            <span class="oaci">LFST</span>
-        </div>
-        <h3>🛫 Caractéristiques Piste(s)</h3>
-        <ul>
-            <li><strong>QFU :</strong> 10 / 28</li>
-            <li><strong>Longueur & Revêtement :</strong> 1550 m x 30 m (Bitume)</li>
-            <li><strong>QFU préférentiel :</strong> Suivre les consignes AFIS en vigueur ou le vent.</li>
-        </ul>
-        <h3>💳 Taxes & Services</h3>
-        <ul>
-            <li><strong>Paiement de la taxe :</strong> La taxe d'atterrissage se paye obligatoirement auprès des pompiers (SSLIA), juste avant d'accéder au restaurant.</li>
-            <li><strong>Carburant :</strong> 100LL / JET A-1 (Automate disponible).</li>
-        </ul>
-        <h3>🍽️ Restauration</h3>
-        <ul>
-            <li><strong>Sur place :</strong> Restaurant "L'Arc en ciel" sur l'aérodrome. Tél : 02 51 07 04 39.</li>
-        </ul>
-        <div class="briefing">
-            <strong>🎯 Le Briefing des Copains :</strong> Accès facile au restaurant après le SSLIA. Attention aux oiseaux parfois nombreux près des pistes en hiver.
-        </div>
-        <a href="#accueil" class="lnk-retour">↩️ Retour au sommaire</a>
-        <div class="footer-card"> Dernière mise à jour : Juin 2026 </div>
-    </div>
-
-</div> <!-- Fin du container -->
-
-<!-- Bouton retour en haut de page (flottant PC) -->
 <a href="#accueil" class="btn-retour-haut">⬆️ Haut</a>
+
+<script>
+    // ==========================================
+    // 📝 BASE DE DONNÉES DES ESCALES
+    // ==========================================
+    const escalesData = [
+        {
+            id: "lfjr",
+            oaci: "LFJR",
+            ville: "Angers",
+            nomComplet: "Angers - Loire Marcé",
+            frequence: "123.355 MHz (AFIS)",
+            has100LL: true,
+            siteMusee: "https://www.musee-aviation-angers.fr/", // 🏛️ LIEN DU MUSÉE UTILISET ICI
+            piste: [
+                "<strong>QFU :</strong> 08 / 26",
+                "<strong>Longueur & Revêtement :</strong> 1800 m x 30 m (Bitume)",
+                "<strong>QFU préférentiel :</strong> 26 généralement par vent d'Ouest dominant."
+            ],
+            taxes: [
+                "<strong>Taxe d'atterrissage :</strong> Oui (Règlement via l'automate de gestion ou bureau d'aérodrome).",
+                "<strong>Carburant :</strong> 100LL / JET A-1 (Automate CB)."
+            ],
+            restauration: [
+                "<strong>Sur place :</strong> Restaurant \"L'envol\" situé sur l'aérodrome. Réservation : 02 72 47 19 38. Accès direct au superbe Musée \"Espace Air Passion\"."
+            ],
+            briefing: "Ne manquez pas la visite du musée aéronautique sur place, elle vaut vraiment le détour ! Activité de formation VFR intense sur l'axe."
+        },
+        {
+            id: "lfbg",
+            oaci: "LFBG",
+            ville: "Angoulême",
+            nomComplet: "Angoulême - Cognac (Brie-Champniers)",
+            frequence: "119.200 MHz (AFIS)",
+            has100LL: true,
+            piste: [
+                "<strong>QFU :</strong> 10 / 28",
+                "<strong>Longueur & Revêtement :</strong> 1860 m x 45 m (Bitume)",
+                "<strong>QFU préférentiel :</strong> Selon vent, écouter l'AFIS ou les informations en auto-information."
+            ],
+            taxes: [
+                "<strong>Taxe d'atterrissage :</strong> Oui (À régler au guichet SSLIA).",
+                "<strong>Carburant :</strong> 100LL / JET A-1."
+            ],
+            restauration: [
+                "<strong>Sur place :</strong> Brasserie de l'aéroport ouverte en semaine (très bon rapport qualité-prix)."
+            ],
+            briefing: "Attention aux zones militaires restreintes de Cognac à proximité immédiate. Bien préparer sa navigation et ses contacts radio."
+        },
+        {
+            id: "lfrb",
+            oaci: "LFRB",
+            ville: "Brest",
+            nomComplet: "Brest Bretagne",
+            frequence: "120.100 MHz (Tour)",
+            has100LL: true,
+            piste: [
+                "<strong>QFU :</strong> 07L / 25R & 07R / 25L",
+                "<strong>Longueur & Revêtement :</strong> 3100 m x 45 m (Bitume) & 700 m x 18 m (Bitume)",
+                "<strong>QFU préférentiel :</strong> Attribuée par le contrôle (Terrain CTR Classe D). Piste courte dédiée à l'aviation légère si disponible."
+            ],
+            taxes: [
+                "<strong>Taxe d'atterrissage :</strong> Oui (Règlement Swoport ou guichet).",
+                "<strong>Carburant :</strong> 100LL / JET A-1."
+            ],
+            restauration: [
+                "<strong>Sur place :</strong> Nombreuses options de restauration (brasseries, enseignes) dans l'aérogare commerciale."
+            ],
+            briefing: "Présence fréquente de brouillard maritime soudain (entrées maritimes). Soyez vigilants aux turbulences et au trafic commercial IFR intense."
+        },
+        {
+            id: "lfou",
+            oaci: "LFOU",
+            ville: "Cholet",
+            nomComplet: "Cholet - Le Pontreau",
+            frequence: "119.005 MHz (A/A)",
+            has100LL: true,
+            piste: [
+                "<strong>QFU :</strong> 03 / 21",
+                "<strong>Longueur & Revêtement :</strong> 1380 m x 30 m (Bitume)",
+                "<strong>QFU préférentiel :</strong> Selon vent (Attention à l'activité planeurs/voltige fréquente)"
+            ],
+            taxes: [
+                "<strong>Procédure Avitaillement & Taxes :</strong> Monter à la tour pour récupérer le badge de la pompe. À la restitution du badge, paiement global par carte bancaire de la taxe d'atterrissage et de l'avitaillement.",
+                "<strong>Carburant :</strong> 100LL / UL91."
+            ],
+            restauration: [
+                "<strong>Sur place :</strong> Restaurant \"Côté Piste\" situé sur l'aérodrome. Réservation : 02 41 75 03 03.",
+                "<strong>Parking avion :</strong> Situé juste devant le restaurant."
+            ],
+            briefing: "Circuit spécifique pour éviter le survol des zones habitées. Intégration soignée recommandée à cause de l'activité planeurs et parachutisme importante le week-end."
+        },
+        {
+            id: "lfrd",
+            oaci: "LFRD",
+            ville: "Dinard",
+            nomComplet: "Dinard - Pleurtuit - Saint-Malo",
+            frequence: "121.200 MHz (AFIS)",
+            has100LL: true,
+            piste: [
+                "<strong>QFU :</strong> 17 / 35 & 12 / 30",
+                "<strong>Longueur & Revêtement :</strong> 2200 m x 45 m (Bitume) & 1445 m x 45 m (Bitume)",
+                "<strong>QFU préférentiel :</strong> Gérée par l'ATC / AFIS selon conditions météo."
+            ],
+            taxes: [
+                "<strong>Taxe d'atterrissage :</strong> Oui (Facturation via l'exploitant de l'aéroport).",
+                "<strong>Carburant :</strong> 100LL / JET A-1 (Automate ou camion)."
+            ],
+            restauration: [
+                "<strong>Sur place :</strong> Snacks ou distributeurs dans l'aérogare principale."
+            ],
+            briefing: "Activité de maintenance aéronautique importante sur site (gros avions au sol/en tour de piste). Attention aux cheminements VFR côtiers très fréquentés en été."
+        },
+        {
+            id: "lfrf",
+            oaci: "LFRF",
+            ville: "Granville",
+            nomComplet: "Granville - Mont-Saint-Michel",
+            frequence: "118.005 MHz (A/A)",
+            has100LL: true,
+            piste: [
+                "<strong>QFU :</strong> 07 / 25",
+                "<strong>Longueur & Revêtement :</strong> 960 m x 30 m (Bitume)",
+                "<strong>QFU préférentiel :</strong> 25 (Face à la mer, sauf vent arrière fort)"
+            ],
+            taxes: [
+                "<strong>Taxe d'atterrissage :</strong> 12 € (Automate CB).",
+                "<strong>Carburant :</strong> 100LL / UL91 (Automate TOTAL)."
+            ],
+            restauration: [
+                "<strong>Sur place :</strong> Restaurant \"Les Valseuses sur Mer\" au pied de la tour. Ouvert tous les jours. Réservation : 0665398102.",
+                "<strong>Accès :</strong> Après avoir payé les taxes, sortir par la grille pour rejoindre le restaurant (le code de la grille est la fréquence de l'AD)."
+            ],
+            briefing: "Effet de falaise en finale 25 par vent de Nord-Ouest. Respecter le TdP maritime."
+        },
+        {
+            id: "lfst",
+            oaci: "LFST",
+            ville: "La Roche-sur-Yon",
+            nomComplet: "La Roche-sur-Yon - Les Ajoncs",
+            frequence: "118.925 MHz (AFIS)",
+            has100LL: true,
+            piste: [
+                "<strong>QFU :</strong> 10 / 28",
+                "<strong>Longueur & Revêtement :</strong> 1550 m x 30 m (Bitume)",
+                "<strong>QFU préférentiel :</strong> Suivre les consignes AFIS en vigueur ou le vent."
+            ],
+            taxes: [
+                "<strong>Paiement de la taxe :</strong> La taxe d'atterrissage se paye obligatoirement auprès des pompiers (SSLIA), juste avant d'accéder au restaurant.",
+                "<strong>Carburant :</strong> 100LL / JET A-1 (Automate disponible)."
+            ],
+            restauration: [
+                "<strong>Sur place :</strong> Restaurant \"L'Arc en ciel\" sur l'aérodrome. Tél : 02 51 07 04 39."
+            ],
+            briefing: "Accès facile au restaurant après le SSLIA. Attention aux oiseaux parfois nombreux près des pistes en hiver."
+        },
+        {
+            id: "lfci",
+            oaci: "LFCI",
+            ville: "Lannion",
+            nomComplet: "Lannion - Côte de Granit Rose",
+            frequence: "118.950 MHz (AFIS)",
+            has100LL: true,
+            piste: [
+                "<strong>QFU :</strong> 11 / 29",
+                "<strong>Longueur & Revêtement :</strong> 1610 m x 30 m (Bitume)",
+                "<strong>QFU préférentiel :</strong> Gérée selon le vent et les informations de la station AFIS."
+            ],
+            taxes: [
+                "<strong>Taxe d'atterrissage :</strong> Oui (Règlement sur place).",
+                "<strong>Carburant :</strong> 100LL / JET A-1."
+            ],
+            restauration: [
+                "<strong>Sur place :</strong> Bar-restaurant de l'aéroport (vérifier les horaires d'ouverture de saison)."
+            ],
+            briefing: "Circuit de piste très encadré pour éviter le survol des habitations périphériques. Intégration rigoureuse requise."
+        },
+        {
+            id: "lfru",
+            oaci: "LFRU",
+            ville: "Morlaix",
+            nomComplet: "Morlaix - Ploujean",
+            frequence: "118.000 MHz (AFIS)",
+            has100LL: true,
+            piste: [
+                "<strong>QFU :</strong> 04 / 22",
+                "<strong>Longueur & Revêtement :</strong> 1614 m x 36 m (Bitume)",
+                "<strong>QFU préférentiel :</strong> Selon vent et consignes de l'agent AFIS."
+            ],
+            taxes: [
+                "<strong>Taxe d'atterrissage :</strong> Oui (Règlement au bureau AFIS / Bureau d'aérodrome).",
+                "<strong>Services :</strong> Avitaillement possible sur place."
+            ],
+            restauration: [
+                "<strong>Sur place :</strong> Bar Snack \"l'Escale\" situé directement sur l'aérodrome. Cuisine simple, abordable, de qualité et accueil très sympa. Tél : 02 98 62 16 09.",
+                "<strong>À proximité (Amateurs de viandes) :</strong> Restaurant \"La Boucherie\" accessible en sortant de l'aérodrome à 300 mètres (Tél : 02 98 88 08 78)."
+            ],
+            briefing: "Attention à la proximité de la baie de Morlaix qui peut engendrer des brises côtières marquées et des changements de visibilité rapides. Activité para possible."
+        },
+        {
+            id: "lfrs",
+            oaci: "LFRS",
+            ville: "Nantes",
+            nomComplet: "Nantes Atlantique",
+            frequence: "118.650 MHz (Tour)",
+            has100LL: true,
+            piste: [
+                "<strong>QFU :</strong> 03 / 21",
+                "<strong>Longueur & Revêtement :</strong> 2900 m x 45 m (Bitume)",
+                "<strong>QFU préférentiel :</strong> Soumise aux instructions ATC (Terrain contrôlé CTR/TMA Classe D)."
+            ],
+            taxes: [
+                "<strong>Taxe d'atterrissage :</strong> Obligatoire (Facturation ultérieure via CCI / Swoport ou à l'escale).",
+                "<strong>Carburant :</strong> 100LL / JET A-1 (Automate TOTAL / World Fuel)."
+            ],
+            restauration: [
+                "<strong>Sur place :</strong> Boutiques, snacks et brasseries dans l'aérogare passagers commerciale."
+            ],
+            briefing: "Plan de vol ou contact radio très en amont requis. Attention aux turbulences de sillage (gros porteurs réguliers). Respectez scrupuleusement les clairances de roulage au sol."
+        },
+        {
+            id: "lfrq",
+            oaci: "LFRQ",
+            ville: "Quimper",
+            nomComplet: "Quimper - Bretagne",
+            frequence: "118.625 MHz (AFIS)",
+            has100LL: true,
+            piste: [
+                "<strong>QFU :</strong> 09 / 27",
+                "<strong>Longueur & Revêtement :</strong> 2140 m x 45 m (Bitume)",
+                "<strong>QFU préférentiel :</strong> Soumise aux clairances de la tour / Contrôle selon activité."
+            ],
+            taxes: [
+                "<strong>Taxe d'atterrissage :</strong> Oui (Règlement à l'aérogare).",
+                "<strong>Carburant :</strong> 100LL / JET A-1."
+            ],
+            restauration: [
+                "<strong>Sur place :</strong> Distributeurs de boissons et snacks dans l'aérogare passagers."
+            ],
+            briefing: "Attention au relief environnant bas mais vallonné en approche par faible visibilité. Respectez bien les axes de transit VFR."
+        },
+        {
+            id: "lfrt",
+            oaci: "LFRT",
+            ville: "Saint-Brieuc",
+            nomComplet: "Saint-Brieuc - Armor",
+            frequence: "124.550 MHz (AFIS)",
+            has100LL: true,
+            piste: [
+                "<strong>QFU :</strong> 06 / 24",
+                "<strong>Longueur & Revêtement :</strong> 2200 m x 45 m (Bitume)",
+                "<strong>QFU préférentiel :</strong> Selon consignes AFIS ou vent en vigueur."
+            ],
+            taxes: [
+                "<strong>Taxe d'atterrissage :</strong> Oui (Règlement au comptoir SSLIA / AFIS).",
+                "<strong>Carburant :</strong> 100LL / JET A-1."
+            ],
+            restauration: [
+                "<strong>Sur place :</strong> Restaurant de l'aérodrome avec vue sur le tarmac (vérifier les jours d'ouverture)."
+            ],
+            briefing: "Attention à la gestion de l'espace aérien à proximité et respectez les trajectoires de circuit publiées pour éviter les nuisances."
+        }
+    ];
+
+    // ==========================================
+    // ⚙️ SCRIPT DE GÉNÉRATION & MOTEUR DE RECHERCHE
+    // ==========================================
+    
+    escalesData.sort((a, b) => a.ville.localeCompare(b.ville));
+
+    const sommaireContainer = document.getElementById('sommaire-fiches');
+    const fichesContainer = document.getElementById('liste-fiches');
+    const inputRecherche = document.getElementById('recherche');
+
+    function genererInterface(dataFiltree) {
+        sommaireContainer.innerHTML = '';
+        fichesContainer.innerHTML = '';
+
+        if(dataFiltree.length === 0) {
+            sommaireContainer.innerHTML = "<p style='grid-column: 1/-1; text-align:center; color:#777;'>Aucun terrain trouvé.</p>";
+            return;
+        }
+
+        dataFiltree.forEach(ad => {
+            // 1. Sommaire
+            const btn = document.createElement('a');
+            btn.href = `#${ad.id}`;
+            btn.className = 'btn-raccourci';
+            btn.innerHTML = `${ad.ville} (${ad.oaci})`;
+            sommaireContainer.appendChild(btn);
+
+            // 2. Fiche
+            const mapperLi = info => `<li>${info}</li>`;
+            const badge100LL = ad.has100LL ? `<span class="badge-100ll">⛽ 100LL</span>` : '';
+            
+            // Si l'aérodrome possède un musée, on prépare son bouton HTML
+            const boutonMusee = ad.siteMusee ? `<a href="${ad.siteMusee}" target="_blank" class="btn-musee">🏛️ Site du Musée</a>` : '';
+
+            const card = document.createElement('div');
+            card.className = 'escale-card';
+            card.id = ad.id;
+            card.innerHTML = `
+                <div class="escale-header">
+                    <h2>${ad.nomComplet}</h2>
+                    <span class="oaci">${ad.oaci}</span>
+                </div>
+                <div class="meta-info">
+                    <div><strong>📻 Radio :</strong> ${ad.frequence}</div>
+                    <div>${badge100LL}</div>
+                    <div class="actions-btn">
+                        ${boutonMusee}
+                        <a href="https://www.sia.aviation-civile.gouv.fr" target="_blank" class="btn-vac">📄 Carte VAC</a>
+                    </div>
+                </div>
+                <h3>🛫 Caractéristiques Piste(s)</h3>
+                <ul>${ad.piste.map(mapperLi).join('')}</ul>
+                <h3>💳 Taxes & Services</h3>
+                <ul>${ad.taxes.map(mapperLi).join('')}</ul>
+                <h3>🍽️ Restauration</h3>
+                <ul>${ad.restauration.map(mapperLi).join('')}</ul>
+                <div class="briefing">
+                    <strong>🎯 Le Briefing des Copains :</strong> ${ad.briefing}
+                </div>
+            `;
+            fichesContainer.appendChild(card);
+        });
+    }
+
+    inputRecherche.addEventListener('input', (e) => {
+        const texte = e.target.value.toLowerCase().trim();
+        const dataFiltree = escalesData.filter(ad => 
+            ad.ville.toLowerCase().includes(texte) || 
+            ad.oaci.toLowerCase().includes(texte) ||
+            ad.nomComplet.toLowerCase().includes(texte)
+        );
+        genererInterface(dataFiltree);
+    });
+
+    genererInterface(escalesData);
+</script>
 
 </body>
 </html>
