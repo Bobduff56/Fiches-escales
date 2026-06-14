@@ -25,6 +25,19 @@
         header h1 { margin: 0; font-size: 2em; }
         header p { margin: 5px 0 0 0; opacity: 0.9; }
         
+        /* Note de sécurité globale */
+        .note-globale {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 0.95em;
+            display: inline-block;
+        }
+
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -144,6 +157,15 @@
             font-weight: bold;
             display: inline-block;
         }
+        .badge-nav {
+            background-color: #ff6e40;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+            display: inline-block;
+        }
         .btn-vac, .btn-musee {
             display: inline-flex;
             align-items: center;
@@ -199,6 +221,7 @@
     <header>
         <h1>✈️ Fiches d'escales</h1>
         <p>Informations utiles escales autour de Vannes-Meucon</p>
+        <div class="note-globale">⚠️ Rappel sécurité (toutes escales) : Pensez à bien porter votre gilet jaune sur le tarmac !</div>
     </header>
 
     <div class="accueil-box">
@@ -218,13 +241,36 @@
     // ==========================================
     const escalesData = [
         {
+            id: "lffi",
+            oaci: "LFFI",
+            ville: "Ancenis",
+            nomComplet: "Ancenis",
+            frequence: "119.300 MHz (A/A)",
+            has100LL: true,
+            distance: 53, // Distance en NM depuis Vannes
+            piste: [
+                "<strong>QFU :</strong> 06 / 24",
+                "<strong>Longueur & Revêtement :</strong> 1200 m x 30 m (Bitume)",
+                "<strong>QFU préférentiel :</strong> Selon vent, auto-information."
+            ],
+            taxes: [
+                "<strong>Taxe d'atterrissage :</strong> Oui (Règlement sur place).",
+                "<strong>Carburant :</strong> 100LL disponible."
+            ],
+            restauration: [
+                "<strong>En face de l'aérodrome :</strong> Restaurant \"La Tour Mermoz\". Réservation disponible sur leur site internet : <a href='https://latourmermoz-restaurant-ancenis.fr' target='_blank'>latourmermoz-restaurant-ancenis.fr</a>"
+            ],
+            briefing: "Aérodrome facile d'accès avec le restaurant idéalement situé juste en face de l'autre côté de la route."
+        },
+        {
             id: "lfjr",
             oaci: "LFJR",
             ville: "Angers",
             nomComplet: "Angers - Loire Marcé",
             frequence: "123.355 MHz (AFIS)",
             has100LL: true,
-            siteMusee: "https://www.musee-aviation-angers.fr/", // 🏛️ LIEN DU MUSÉE UTILISET ICI
+            distance: 78,
+            siteMusee: "https://www.musee-aviation-angers.fr/",
             piste: [
                 "<strong>QFU :</strong> 08 / 26",
                 "<strong>Longueur & Revêtement :</strong> 1800 m x 30 m (Bitume)",
@@ -246,6 +292,7 @@
             nomComplet: "Angoulême - Cognac (Brie-Champniers)",
             frequence: "119.200 MHz (AFIS)",
             has100LL: true,
+            distance: 161,
             piste: [
                 "<strong>QFU :</strong> 10 / 28",
                 "<strong>Longueur & Revêtement :</strong> 1860 m x 45 m (Bitume)",
@@ -261,12 +308,35 @@
             briefing: "Attention aux zones militaires restreintes de Cognac à proximité immédiate. Bien préparer sa navigation et ses contacts radio."
         },
         {
+            id: "lfea",
+            oaci: "LFEA",
+            ville: "Belle-Île",
+            nomComplet: "Belle-Île - Bangor",
+            frequence: "118.425 MHz (A/A)",
+            has100LL: false,
+            distance: 24,
+            piste: [
+                "<strong>QFU :</strong> 06 / 24",
+                "<strong>Longueur & Revêtement :</strong> 660 m x 18 m (Revêtement mince / Enrobé)",
+                "<strong>Particularité :</strong> Piste courte et étroite. Attention aux effets de falaise et aux vents turbulents fréquents sur l'île."
+            ],
+            taxes: [
+                "<strong>Taxe d'atterrissage :</strong> Oui (Règlement à la maison de l'aérodrome ou via l'exploitant).",
+                "<strong>Carburant :</strong> Non disponible (Pas de 100LL)."
+            ],
+            restauration: [
+                "<strong>À proximité :</strong> Pas de restaurant immédiat sur le terrain. Prévoir un taxi, une location de vélo/scooter ou de marcher vers Le Palais ou Bangor pour profiter des crêperies et restaurants de l'île."
+            ],
+            briefing: "Survol maritime, pensez aux gilets de sauvetage."
+        },
+        {
             id: "lfrb",
             oaci: "LFRB",
             ville: "Brest",
             nomComplet: "Brest Bretagne",
             frequence: "120.100 MHz (Tour)",
             has100LL: true,
+            distance: 104,
             piste: [
                 "<strong>QFU :</strong> 07L / 25R & 07R / 25L",
                 "<strong>Longueur & Revêtement :</strong> 3100 m x 45 m (Bitume) & 700 m x 18 m (Bitume)",
@@ -288,6 +358,7 @@
             nomComplet: "Cholet - Le Pontreau",
             frequence: "119.005 MHz (A/A)",
             has100LL: true,
+            distance: 67,
             piste: [
                 "<strong>QFU :</strong> 03 / 21",
                 "<strong>Longueur & Revêtement :</strong> 1380 m x 30 m (Bitume)",
@@ -304,12 +375,35 @@
             briefing: "Circuit spécifique pour éviter le survol des zones habitées. Intégration soignée recommandée à cause de l'activité planeurs et parachutisme importante le week-end."
         },
         {
+            id: "lfld",
+            oaci: "LFLD",
+            ville: "Dinan",
+            nomComplet: "Dinan - Trélivan",
+            frequence: "119.765 MHz (A/A)",
+            has100LL: true,
+            distance: 57,
+            piste: [
+                "<strong>QFU :</strong> 06 / 24",
+                "<strong>Longueur & Revêtement :</strong> 910 m x 30 m (Bitume)",
+                "<strong>QFU préférentiel :</strong> Selon vent, auto-information."
+            ],
+            taxes: [
+                "<strong>Taxe d'atterrissage :</strong> À vérifier sur place / pas de taxe fixe restrictive généralement.",
+                "<strong>Carburant :</strong> 100LL disponible."
+            ],
+            restauration: [
+                "<strong>Sur place :</strong> Restaurant \"Le Café Racer\". Téléphone : 02 96 85 40 95. Le restaurant est situé sur l'aérodrome à 100 mètres du parking avion en herbe."
+            ],
+            briefing: "Attention à l'activité importante de l'aéroclub local et à la proximité de la CTR de Dinard. Bien veiller sur la nouvelle fréquence 119.765."
+        },
+        {
             id: "lfrd",
             oaci: "LFRD",
             ville: "Dinard",
             nomComplet: "Dinard - Pleurtuit - Saint-Malo",
             frequence: "121.200 MHz (AFIS)",
             has100LL: true,
+            distance: 61,
             piste: [
                 "<strong>QFU :</strong> 17 / 35 & 12 / 30",
                 "<strong>Longueur & Revêtement :</strong> 2200 m x 45 m (Bitume) & 1445 m x 45 m (Bitume)",
@@ -331,6 +425,7 @@
             nomComplet: "Granville - Mont-Saint-Michel",
             frequence: "118.005 MHz (A/A)",
             has100LL: true,
+            distance: 82,
             piste: [
                 "<strong>QFU :</strong> 07 / 25",
                 "<strong>Longueur & Revêtement :</strong> 960 m x 30 m (Bitume)",
@@ -353,6 +448,7 @@
             nomComplet: "La Roche-sur-Yon - Les Ajoncs",
             frequence: "118.925 MHz (AFIS)",
             has100LL: true,
+            distance: 69,
             piste: [
                 "<strong>QFU :</strong> 10 / 28",
                 "<strong>Longueur & Revêtement :</strong> 1550 m x 30 m (Bitume)",
@@ -374,6 +470,7 @@
             nomComplet: "Lannion - Côte de Granit Rose",
             frequence: "118.950 MHz (AFIS)",
             has100LL: true,
+            distance: 78,
             piste: [
                 "<strong>QFU :</strong> 11 / 29",
                 "<strong>Longueur & Revêtement :</strong> 1610 m x 30 m (Bitume)",
@@ -395,6 +492,7 @@
             nomComplet: "Morlaix - Ploujean",
             frequence: "118.000 MHz (AFIS)",
             has100LL: true,
+            distance: 76,
             piste: [
                 "<strong>QFU :</strong> 04 / 22",
                 "<strong>Longueur & Revêtement :</strong> 1614 m x 36 m (Bitume)",
@@ -417,6 +515,7 @@
             nomComplet: "Nantes Atlantique",
             frequence: "118.650 MHz (Tour)",
             has100LL: true,
+            distance: 51,
             piste: [
                 "<strong>QFU :</strong> 03 / 21",
                 "<strong>Longueur & Revêtement :</strong> 2900 m x 45 m (Bitume)",
@@ -438,6 +537,7 @@
             nomComplet: "Quimper - Bretagne",
             frequence: "118.625 MHz (AFIS)",
             has100LL: true,
+            distance: 57,
             piste: [
                 "<strong>QFU :</strong> 09 / 27",
                 "<strong>Longueur & Revêtement :</strong> 2140 m x 45 m (Bitume)",
@@ -459,6 +559,7 @@
             nomComplet: "Saint-Brieuc - Armor",
             frequence: "124.550 MHz (AFIS)",
             has100LL: true,
+            distance: 53,
             piste: [
                 "<strong>QFU :</strong> 06 / 24",
                 "<strong>Longueur & Revêtement :</strong> 2200 m x 45 m (Bitume)",
@@ -472,6 +573,28 @@
                 "<strong>Sur place :</strong> Restaurant de l'aérodrome avec vue sur le tarmac (vérifier les jours d'ouverture)."
             ],
             briefing: "Attention à la gestion de l'espace aérien à proximité et respectez les trajectoires de circuit publiées pour éviter les nuisances."
+        },
+        {
+            id: "lfrz",
+            oaci: "LFRZ",
+            ville: "Saint-Nazaire",
+            nomComplet: "Saint-Nazaire - Montoir",
+            frequence: "119.550 MHz (AFIS)",
+            has100LL: true,
+            distance: 36,
+            piste: [
+                "<strong>QFU :</strong> 07 / 25",
+                "<strong>Longueur & Revêtement :</strong> 2400 m x 45 m (Bitume)",
+                "<strong>Particularité :</strong> Grande piste d'essai industrielle accueillant régulièrement des vols cargo ou de transport de pièces d'avions."
+            ],
+            taxes: [
+                "<strong>Taxe d'atterrissage :</strong> Oui (Règlement au bureau d'aérodrome ou via le SSLIA).",
+                "<strong>Carburant :</strong> 100LL / JET A-1 (Automate)."
+            ],
+            restauration: [
+                "<strong>Sur place :</strong> Options de restauration limitées au sein immédiat du terminal civil (snacks/distributeurs). Restaurants plus complets disponibles dans la zone d'activité de Montoir ou vers Gron."
+            ],
+            briefing: "Forte activité industrielle liée aux usines Airbus environnantes. Attention au trafic de transporteurs spécifiques de type Beluga ou vols d'essais constructeur. Zone CTR active."
         }
     ];
 
@@ -506,6 +629,10 @@
             const mapperLi = info => `<li>${info}</li>`;
             const badge100LL = ad.has100LL ? `<span class="badge-100ll">⛽ 100LL</span>` : '';
             
+            // Calcul du temps sans vent (Distance * FB 0,5) converti proprement en minutes
+            const tempsVolMinutes = Math.round(ad.distance * 0.5);
+            const badgeNavigation = `<span class="badge-nav">⏱️ LFRV ➔ ${ad.distance} NM (${tempsVolMinutes} min sans vent)</span>`;
+            
             // Si l'aérodrome possède un musée, on prépare son bouton HTML
             const boutonMusee = ad.siteMusee ? `<a href="${ad.siteMusee}" target="_blank" class="btn-musee">🏛️ Site du Musée</a>` : '';
 
@@ -520,6 +647,7 @@
                 <div class="meta-info">
                     <div><strong>📻 Radio :</strong> ${ad.frequence}</div>
                     <div>${badge100LL}</div>
+                    <div>${badgeNavigation}</div>
                     <div class="actions-btn">
                         ${boutonMusee}
                         <a href="https://www.sia.aviation-civile.gouv.fr" target="_blank" class="btn-vac">📄 Carte VAC</a>
