@@ -247,7 +247,7 @@
             nomComplet: "Ancenis",
             frequence: "119.300 MHz (A/A)",
             has100LL: true,
-            distance: 53, // Distance en NM depuis Vannes
+            distance: 53,
             piste: [
                 "<strong>QFU :</strong> 06 / 24",
                 "<strong>Longueur & Revêtement :</strong> 1200 m x 30 m (Bitume)",
@@ -553,6 +553,28 @@
             briefing: "Attention au relief environnant bas mais vallonné en approche par faible visibilité. Respectez bien les axes de transit VFR."
         },
         {
+            id: "lfcy",
+            oaci: "LFCY",
+            ville: "Royan",
+            nomComplet: "Royan - Médis",
+            frequence: "118.800 MHz (AFIS / A/A)",
+            has100LL: true,
+            distance: 130,
+            piste: [
+                "<strong>QFU :</strong> 10 / 28",
+                "<strong>Longueur & Revêtement :</strong> 1255 m x 30 m (Bitume) & 1000 m x 60 m (Herbe)",
+                "<strong>Observations :</strong> Activité importante de parachutisme et de voltige sur le terrain. Tour de piste obligatoire au Nord."
+            ],
+            taxes: [
+                "<strong>Taxe d'atterrissage :</strong> Oui (Règlement auprès du gestionnaire Ville de Royan).",
+                "<strong>Carburant :</strong> 100LL / JET A-1 (Automate H24 Carte Total)."
+            ],
+            restauration: [
+                "<strong>Sur place :</strong> Restaurant \"L'Escale\" situé directement sur l'aérodrome. Tél : 05 46 05 64 06. Site internet : <a href='https://lescale-restaurant-royan-medis.eatbu.com/?lang=fr&ct-referrer=perplexity' target='_blank'>lescale-restaurant-royan-medis.eatbu.com</a>"
+            ],
+            briefing: "Terrain en bordure de côte exposé aux entrées maritimes soudaines (brume de mer rapide). Par vent de Sud-Est à Sud fort (> 20 kt), fortes turbulences possibles en finale piste 10."
+        },
+        {
             id: "lfrt",
             oaci: "LFRT",
             ville: "Saint-Brieuc",
@@ -629,7 +651,7 @@
             const mapperLi = info => `<li>${info}</li>`;
             const badge100LL = ad.has100LL ? `<span class="badge-100ll">⛽ 100LL</span>` : '';
             
-            // Calcul du temps sans vent (Distance * FB 0,5) converti proprement en minutes
+            // Calcul du temps sans vent (Distance * FB 0,5)
             const tempsVolMinutes = Math.round(ad.distance * 0.5);
             const badgeNavigation = `<span class="badge-nav">⏱️ LFRV ➔ ${ad.distance} NM (${tempsVolMinutes} min sans vent)</span>`;
             
