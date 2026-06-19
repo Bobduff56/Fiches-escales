@@ -25,6 +25,20 @@
         header h1 { margin: 0; font-size: 2em; }
         header p { margin: 5px 0 0 0; opacity: 0.9; }
         
+        /* Note d'avertissement officiel */
+        .avertissement-officiel {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 0.95em;
+            display: block;
+            text-align: center;
+        }
+
         /* Note de sécurité globale */
         .note-globale {
             background-color: #d1ecf1;
@@ -221,6 +235,7 @@
     <header>
         <h1>✈️ Fiches d'escales</h1>
         <p>Informations utiles escales autour de Vannes-Meucon</p>
+        <div class="avertissement-officiel">🛑 Attention : Ces informations sont données à titre purement indicatif et ne remplacent en aucun cas la documentation aéronautique officielle (SIA, cartes VAC, NOTAM, Sup AIP).</div>
         <div class="note-globale">⚠️ Rappel sécurité (toutes escales) : Pensez à bien porter votre gilet jaune sur le tarmac !</div>
     </header>
 
@@ -401,22 +416,23 @@
             oaci: "LFRD",
             ville: "Dinard",
             nomComplet: "Dinard - Pleurtuit - Saint-Malo",
-            frequence: "121.200 MHz (AFIS)",
+            frequence: "120.550 MHz (Tour) | ATIS : 124.580 MHz",
             has100LL: true,
             distance: 61,
             piste: [
-                "<strong>QFU :</strong> 17 / 35 & 12 / 30",
+                "<strong>QFU préférentiel :</strong> 35",
+                "<strong>Autres QFU :</strong> 17 & 11 / 29",
                 "<strong>Longueur & Revêtement :</strong> 2200 m x 45 m (Bitume) & 1445 m x 45 m (Bitume)",
-                "<strong>QFU préférentiel :</strong> Gérée par l'ATC / AFIS selon conditions météo."
+                "<strong>Gestion :</strong> Contrôlé, géré par la Tour (TWR) selon les clairances."
             ],
             taxes: [
                 "<strong>Taxe d'atterrissage :</strong> Oui (Facturation via l'exploitant de l'aéroport).",
                 "<strong>Carburant :</strong> 100LL / JET A-1 (Automate ou camion)."
             ],
             restauration: [
-                "<strong>Sur place :</strong> Snacks ou distributeurs dans l'aérogare principale."
+                "<strong>Fermeture :</strong> L'aérogare est désormais fermée et il n'y a plus de restauration sur place (pas de snacks ni de distributeurs)."
             ],
-            briefing: "Activité de maintenance aéronautique importante sur site (gros avions au sol/en tour de piste). Attention aux cheminements VFR côtiers très fréquentés en été."
+            briefing: "Aérodrome contrôlé avec présence d'un contrôleur en Tour. Activité de maintenance aéronautique importante sur site (gros avions au sol/en tour de piste). Attention aux cheminements VFR côtiers très fréquentés en été."
         },
         {
             id: "lfrf",
